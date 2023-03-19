@@ -19,6 +19,10 @@ use Inertia\Inertia;
 });*/
 
 
-Route::get('/', function () {
+Route::get('/hello', function () {
     return Inertia::render('hello-world');
+});
+
+Route::get('/table', function () {
+    return Inertia::render('table');
 });
