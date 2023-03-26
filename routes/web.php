@@ -26,3 +26,7 @@ Route::get('/hello', function () {
 Route::get('/table', function () {
     return Inertia::render('table');
 });
+
+Route::get('/', function () {
+    return Inertia::render('table');
+});

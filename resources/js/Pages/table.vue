@@ -25,7 +25,7 @@ export default {
 
 <template>
   <div>
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th v-for="(label, key) in header" :key="key">{{label}}</th>
