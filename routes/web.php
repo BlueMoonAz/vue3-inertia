@@ -18,6 +18,8 @@ use Inertia\Inertia;
     return view('welcome');
 });*/
 
+use App\Http\Controllers\FruitsListController;
+
 
 Route::get('/hello', function () {
     return Inertia::render('hello-world');
@@ -30,3 +32,6 @@ Route::get('/table', function () {
 Route::get('/', function () {
     return Inertia::render('table');
 });
+
+Route::get('/fruits/list',[FruitsListController::class,'index'])
+    ->name('fruits.index');

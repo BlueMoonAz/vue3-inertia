@@ -12,6 +12,11 @@
                     table
                     </Link>
                 </div>
+                <div>
+                    <Link href="/fruits/list">
+                    Fruits
+                    </Link>
+                </div>
             </div>
             <div class="col-10">
                 <slot />
