@@ -18,20 +18,24 @@ use Inertia\Inertia;
     return view('welcome');
 });*/
 
-use App\Http\Controllers\FruitsListController;
+use App\Http\Controllers\FruitsController;
 
 
 Route::get('/hello', function () {
-    return Inertia::render('hello-world');
-});
+    return Inertia::render('hello-world');});
 
 Route::get('/table', function () {
-    return Inertia::render('table');
-});
+    return Inertia::render('table');});
 
 Route::get('/', function () {
-    return Inertia::render('table');
-});
+    return Inertia::render('table');});
 
-Route::get('/fruits/list',[FruitsListController::class,'index'])
+Route::get('/fruits/list',[FruitsController::class,'index'])
     ->name('fruits.index');
+
+Route::get('/fruits/add', function () {
+        return Inertia::render('Fruits/Create');});
+
+Route::post('/fruits/create',[FruitsController::class,'create'])
+    ->name('fruits.create');
+
