@@ -22,7 +22,11 @@ class FruitsController extends Controller
             'name' => ['required', 'max:50'],
           ]));
 
-          to_route('fruits.index');
           return Redirect::route('fruits.index');
+    }
+
+    public function destroy(Fruit $fruit){
+        $fruit->delete();
+        return Redirect::route('fruits.index');
     }
 }
