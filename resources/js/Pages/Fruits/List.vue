@@ -11,6 +11,17 @@ export default {
       if(confirm(item.name+'を削除しますか？')){
         this.$inertia.delete(`/fruits/del/${item.id}`)
       }
+    },
+    edit(item){
+      this.isActive=item.id;
+    },
+    cancel(){
+      this.isActive=null;
+    }
+  },
+  data(){
+    return{
+      isActive:null,
     }
   }
 };
@@ -29,9 +40,16 @@ export default {
     <tbody>
       <tr v-for="item in items" :key="item.id">
         <td>{{item.id}}</td>
-        <td>{{item.name}}</td>
+        <td>
+          {{item.name}}
+          <div v-show="isActive==item.id">
+            <input type="text" v-bind:value="item.name"/>
+            <input type="button" value="取消" @click="cancel()"/>
+          </div>
+        </td>
         <td>
           <input type="button" value="削除" @click="destroy(item)"/>
+          <input type="button" value="編集" @click="edit(item)"/>
         </td>
       </tr>
     </tbody>
