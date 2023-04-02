@@ -42,3 +42,6 @@ Route::post('/fruits/create',[FruitsController::class,'create'])
 Route::delete('/fruits/del/{fruit}',[FruitsController::class,'destroy'])
     ->name('fruits.destroy');
 
+Route::put('/fruits/{fruit}/update',[FruitsController::class,'update'])
+    ->name('fruits.update');
+

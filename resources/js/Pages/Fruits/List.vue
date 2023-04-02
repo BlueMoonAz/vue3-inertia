@@ -1,5 +1,6 @@
 <script>
 import Layout from '@/Pages/Layout.vue'
+import { useForm } from '@inertiajs/inertia-vue3';
 
 export default {
   layout:Layout,
@@ -14,6 +15,21 @@ export default {
     },
     edit(item){
       this.isActive=item.id;
+      this.name=item.name;
+    },
+    update(item){
+      const form = useForm({
+        id:item.id,
+        name:this.name
+      })
+      //this.id = item.id;
+      //this.name = item.name;
+      //this.param={'id':this.id,'name':this.name}
+      //this.$inertia.put(`/fruits/${this.param}/update`)
+
+      this.isActive=null;
+      form.put(`/fruits/${item.id}/update`);
+
     },
     cancel(){
       this.isActive=null;
@@ -22,6 +38,9 @@ export default {
   data(){
     return{
       isActive:null,
+      param:Array,
+      id:null,
+      name:null,
     }
   }
 };
@@ -32,9 +51,9 @@ export default {
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>id</th>
-        <th>名称</th>
-        <th></th>
+        <th class="col-1">id</th>
+        <th class="col-6">名称</th>
+        <th class="col-2"></th>
       </tr>
     </thead>
     <tbody>
@@ -43,7 +62,9 @@ export default {
         <td>
           {{item.name}}
           <div v-show="isActive==item.id">
-            <input type="text" v-bind:value="item.name"/>
+            <!--<input type="text" v-model="item.name"/>-->
+            <input type="text" v-model="name"/>
+            <input type="button" value="更新" @click="update(item)"/>
             <input type="button" value="取消" @click="cancel()"/>
           </div>
         </td>
