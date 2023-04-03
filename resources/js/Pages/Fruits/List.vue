@@ -22,10 +22,6 @@ export default {
         id:item.id,
         name:this.name
       })
-      //this.id = item.id;
-      //this.name = item.name;
-      //this.param={'id':this.id,'name':this.name}
-      //this.$inertia.put(`/fruits/${this.param}/update`)
 
       this.isActive=null;
       form.put(`/fruits/${item.id}/update`);
@@ -39,7 +35,6 @@ export default {
     return{
       isActive:null,
       param:Array,
-      id:null,
       name:null,
     }
   }
@@ -62,7 +57,6 @@ export default {
         <td>
           {{item.name}}
           <div v-show="isActive==item.id">
-            <!--<input type="text" v-model="item.name"/>-->
             <input type="text" v-model="name"/>
             <input type="button" value="更新" @click="update(item)"/>
             <input type="button" value="取消" @click="cancel()"/>

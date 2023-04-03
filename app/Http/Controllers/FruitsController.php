@@ -17,12 +17,12 @@ class FruitsController extends Controller
         );
     }
 
-    public function create(Request $request){
-        Fruit::create($request->validate([
+    public function create(Fruit $fruit){
+        $fruit->create(Request::validate([
             'name' => ['required', 'max:50'],
           ]));
 
-          return Redirect::route('fruits.index');
+        return Redirect::route('fruits.index');
     }
 
     public function destroy(Fruit $fruit){

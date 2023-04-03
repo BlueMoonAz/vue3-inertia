@@ -21,14 +21,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\FruitsController;
 
 
-Route::get('/hello', function () {
-    return Inertia::render('hello-world');});
-
-Route::get('/table', function () {
-    return Inertia::render('table');});
-
-Route::get('/', function () {
-    return Inertia::render('table');});
+Route::get('/', [FruitsController::class,'index'])
+    ->name('fruits.index');
 
 Route::get('/fruits/list',[FruitsController::class,'index'])
     ->name('fruits.index');

@@ -20,8 +20,8 @@ export default {
 
 <template>
   <form @submit.prevent="submit">
-    <label for="name">name:</label>
-    <input id="name" v-model="form.name" />
-    <button type="submit">Submit</button>
+    <label for="fruitName">フルーツ:</label>
+    <input id="fruitName" v-model="form.name" />
+    <button type="submit">登録</button>
   </form>
 </template>

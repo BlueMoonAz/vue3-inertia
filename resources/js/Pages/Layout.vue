@@ -3,16 +3,6 @@
         <div class="row">
             <div class="col-2">
                 <div>
-                    <Link href="/hello">
-                    hello
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/table">
-                    table
-                    </Link>
-                </div>
-                <div>
                     <Link href="/fruits/list">
                     Fruits
                     </Link>
