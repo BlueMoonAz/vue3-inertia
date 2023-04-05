@@ -4,12 +4,12 @@
             <div class="col-2">
                 <div>
                     <Link href="/fruits/list">
-                    Fruits
+                    一覧・更新・削除
                     </Link>
                 </div>
                 <div>
                     <Link href="/fruits/add">
-                    Fruits add
+                    登録
                     </Link>
                 </div>
             </div>
