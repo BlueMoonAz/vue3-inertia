@@ -16,11 +16,13 @@ export default {
     edit(item){
       this.isActive=item.id;
       this.name=item.name;
+      this.price=item.price;
     },
     update(item){
       const form = useForm({
         id:item.id,
-        name:this.name
+        name:this.name,
+        price:this.price
       })
 
       this.isActive=null;
@@ -36,6 +38,7 @@ export default {
       isActive:null,
       param:Array,
       name:null,
+      price:null,
     }
   }
 };
@@ -46,25 +49,38 @@ export default {
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th class="col-1">id</th>
-        <th class="col-6">名称</th>
+        <th class="col-1 text-center">id</th>
+        <th class="col-4">名称</th>
+        <th class="col-1">価格</th>
         <th class="col-2"></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in items" :key="item.id">
-        <td>{{item.id}}</td>
+        <td class="text-center">{{item.id}}</td>
         <td>
           {{item.name}}
           <div v-show="isActive==item.id">
             <input type="text" v-model="name"/>
-            <input type="button" value="更新" @click="update(item)"/>
-            <input type="button" value="取消" @click="cancel()"/>
+          </div>
+        </td>
+        <td class="text-end">
+          <div v-if="item.price" >
+            {{ item.price.toLocaleString() }}
+          </div>
+          <div v-show="isActive==item.id">
+            <input type="text" v-model="price" class="text-end"/>
           </div>
         </td>
         <td>
-          <input type="button" value="削除" @click="destroy(item)"/>
-          <input type="button" value="編集" @click="edit(item)"/>
+          <div v-show="isActive!=item.id">
+            <input type="button" value="削除" @click="destroy(item)"/>
+            <input type="button" value="編集" @click="edit(item)"/>
+          </div>
+          <div v-show="isActive==item.id">
+            <input type="button" value="更新" @click="update(item)"/>
+            <input type="button" value="取消" @click="cancel()"/>
+          </div>
         </td>
       </tr>
     </tbody>

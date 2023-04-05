@@ -7,6 +7,7 @@ export default {
         return {
             form: this.$inertia.form({
                 name: null,
+                price:null,
             }),
         }
     },
@@ -22,6 +23,8 @@ export default {
   <form @submit.prevent="submit">
     <label for="fruitName">フルーツ:</label>
     <input id="fruitName" v-model="form.name" />
+    <label for="price">値段:</label>
+    <input id="price" v-model="form.price" />
     <button type="submit">登録</button>
   </form>
 </template>

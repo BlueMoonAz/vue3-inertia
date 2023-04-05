@@ -18,7 +18,8 @@ class FruitsController extends Controller
     }
 
     public function create(Request $request){
-        DB::insert("insert into fruits(name) values (?)",[$request->get('name')]);
+        DB::insert("insert into fruits(name,price) values (?,?)",
+            [$request->get('name'),$request->get('price')]);
         return Redirect::route('fruits.index');
     }
 
@@ -29,8 +30,10 @@ class FruitsController extends Controller
 
     public function update(Request $request){
         //ddd($fruit);
-        DB::update("update fruits set name=? where id=?",
-            [$request->get('name'),$request->get('id')]
+        DB::update("update fruits set name=?,price=? where id=?",
+            [$request->get('name'),
+            $request->get('price'),
+            $request->get('id')]
         );
 
         return Redirect::route('fruits.index');
