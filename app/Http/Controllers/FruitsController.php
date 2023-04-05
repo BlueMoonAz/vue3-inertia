@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Fruit;
@@ -19,28 +20,21 @@ class FruitsController extends Controller
     }
 
     public function create(Request $request){
-
-        ddd($request);
-
-        /*$fruit->create(Request::validate([
-            'name' => ['required', 'max:50'],
-          ]));*/
-
+        DB::insert("insert into fruits(name) values (?)",[$request->get('name')]);
         return Redirect::route('fruits.index');
     }
 
-    public function destroy(Fruit $fruit){
-        $fruit->delete();
+    public function destroy(int $id){
+        DB::delete("delete from fruits where id=?",[$id]);
         return Redirect::route('fruits.index');
     }
 
-    public function update(Fruit $fruit){
+    public function update(Request $request){
         //ddd($fruit);
-        $fruit->update(
-            Request::validate([
-                'name' => ['required', 'max:50'],
-            ])
+        DB::update("update fruits set name=? where id=?",
+            [$request->get('name'),$request->get('id')]
         );
+
         return Redirect::route('fruits.index');
     }
 }
