@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Fruit;
 use Inertia\Inertia;
@@ -13,7 +14,7 @@ class FruitsController extends Controller
     //
     public function index(Request $request){
         return Inertia::render(
-            'Fruits/List',['items' => Fruit::all()]
+            'Fruits/List',['items' => DB::select("select * from fruits")]
         );
     }
 
