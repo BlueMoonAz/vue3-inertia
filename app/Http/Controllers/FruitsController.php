@@ -14,7 +14,7 @@ class FruitsController extends Controller
     //
     public function index(Request $request){
         return Inertia::render(
-            'Fruits/List',['items' => DB::select("select * from fruits")]
+            'Fruits/List',['items' => DB::select("select * from fruits order by id")]
         );
     }
 
