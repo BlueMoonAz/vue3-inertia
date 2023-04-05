@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-//use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Fruit;
 use Inertia\Inertia;
 
 class FruitsController extends Controller
