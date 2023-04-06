@@ -1,6 +1,7 @@
 <script>
 import Layout from '@/Pages/Layout.vue'
 import { useForm } from '@inertiajs/inertia-vue3';
+import{ElButton} from 'element-plus';
 
 export default {
   layout:Layout,
@@ -85,5 +86,6 @@ export default {
       </tr>
     </tbody>
   </table>
+  <el-button round>element</el-button>
 </div>
 </template>
