@@ -1,7 +1,7 @@
 <script>
 import Layout from '@/Pages/Layout.vue'
 import { useForm } from '@inertiajs/inertia-vue3';
-import{ElButton} from 'element-plus';
+import{ElButton,ElTable,ElTableColumn} from 'element-plus';
 
 export default {
   layout:Layout,
@@ -47,6 +47,26 @@ export default {
 
 <template>
   <div>
+    <el-table :data="items" style="width: 100%">
+      <el-table-column prop="id" label="id" width="80" />
+      <el-table-column prop="name" label="名称" />
+      <el-table-column prop="price" label="価格" width="100"
+       header-align="center" align="right">
+        <template #default="scope">
+          <div v-if="scope.row.price" >
+            {{scope.row.price.toLocaleString()}}
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column fixed="right" label="操作" width="120">
+        <template #default="scope">
+          <el-button link type="primary">編集</el-button>
+          <el-button link type="primary"
+            @click.prevent="destroy(items[scope.$index])">削除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+
   <table class="table table-bordered table-hover">
     <thead>
       <tr>
