@@ -20,11 +20,13 @@ export default {
 </script>
 
 <template>
-  <form @submit.prevent="submit">
-    <label for="fruitName">フルーツ:</label>
-    <input id="fruitName" v-model="form.name" />
-    <label for="price">値段:</label>
-    <input id="price" v-model="form.price" />
-    <button type="submit">登録</button>
-  </form>
+  <el-form :model="form" >
+    <el-form-item label="フルーツ:">
+      <el-input v-model="form.name" autocomplete="off" />
+    </el-form-item>
+    <el-form-item label="価格:">
+      <el-input v-model="form.price" autocomplete="off" />
+    </el-form-item>
+    <el-button type="submit" @click.prevent="submit()">登録</el-button>
+  </el-form>
 </template>

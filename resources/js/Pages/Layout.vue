@@ -4,7 +4,7 @@
             <div class="col-2">
                 <div>
                     <Link href="/fruits/list">
-                    一覧・更新・削除
+                    一覧
                     </Link>
                 </div>
                 <div>
