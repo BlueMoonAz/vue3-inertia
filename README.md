@@ -5,7 +5,9 @@
 ・pagenation実装
 ・Composition Api化
 ・ts化
+・jetstream
 ・sailでinertia実装調査
+・求人
 
 <受注管理>
 ・顧客マスタ実装
