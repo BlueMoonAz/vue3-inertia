@@ -17,15 +17,8 @@
     
 </template>
 
-<script>
-export default {
-  methods:{
-    getIndex(){
-        this.$inertia.get('/fruits/list');
-    },
-    getAdd(){
-        this.$inertia.get('/fruits/add');
-    },
-  }
-}
+<script setup>
+import { Inertia } from '@inertiajs/inertia'
+const getIndex=()=>Inertia.visit('/fruits/list', {method: 'get'});
+const getAdd=()=>Inertia.visit('/fruits/add', {method: 'get'});
 </script>
