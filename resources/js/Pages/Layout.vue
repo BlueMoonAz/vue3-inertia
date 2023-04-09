@@ -1,31 +1,31 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
-                <div>
-                    <Link href="/fruits/list">
+    <el-row>
+        <el-col :span="4">
+            <el-menu>
+                <el-menu-item @click="getIndex()">
                     一覧
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/fruits/add">
+                </el-menu-item>
+                <el-menu-item @click="getAdd()">
                     登録
-                    </Link>
-                </div>
-            </div>
-            <div class="col-10">
-                <slot />
-            </div>
-        </div>
-    </div>
+                </el-menu-item>
+            </el-menu>
+        </el-col>
+        <el-col :span="15">
+            <slot />
+        </el-col>
+    </el-row>
     
 </template>
 
 <script>
-import { Link } from '@inertiajs/inertia-vue3'
 export default {
-  components: {
-    Link
-  },
+  methods:{
+    getIndex(){
+        this.$inertia.get('/fruits/list');
+    },
+    getAdd(){
+        this.$inertia.get('/fruits/add');
+    },
+  }
 }
 </script>
