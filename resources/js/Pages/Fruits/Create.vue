@@ -1,25 +1,21 @@
-<script >
+<script setup >
+import { reactive } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 import Layout from '@/Pages/Layout.vue'
 
-export default {
-    layout:Layout,
-    data(){
-        return {
-            form: this.$inertia.form({
+const form=reactive({
                 name: null,
                 price:null,
-            }),
-        }
-    },
-    methods: {
-        submit() {
-            this.form.post('create')
-        },
-  },
+            })
+
+function submit() {
+  Inertia.post('/fruits/create', form)
 }
+
 </script>
 
 <template>
+  <Layout>
   <el-form :model="form" >
     <el-form-item label="フルーツ:">
       <el-input v-model="form.name" autocomplete="off" />
@@ -29,4 +25,5 @@ export default {
     </el-form-item>
     <el-button type="submit" @click.prevent="submit()">登録</el-button>
   </el-form>
+  </Layout>
 </template>
