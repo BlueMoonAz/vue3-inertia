@@ -3,6 +3,7 @@ import Layout from '@/Pages/Layout.vue';
 import { defineProps,reactive,ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
 import { useForm } from '@inertiajs/inertia-vue3';
+import { computed } from '@vue/reactivity';
 
 const props = defineProps({
   items:{
@@ -14,6 +15,7 @@ const form=reactive({
         id:null,
         name:null,
         price:null,});
+
 
 function destroy(item){
       if(confirm(item.name+'を削除しますか？')){
@@ -40,11 +42,21 @@ function update(){
       iform.put(`/fruits/${iform.id}/update`);
 
 }
+
+const page=ref(1);
+const pageSize=10;
+
+function setPage(val){
+  page.value=val;
+}
+
+const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSize, pageSize * page.value));
+
 </script>
 
 <template>
   <Layout>
-  <el-table :data="props.items" style="width: 100%">
+  <el-table :data="pagedItems" style="width: 100%">
     <el-table-column prop="id" label="id" width="80" />
     <el-table-column prop="name" label="名称" />
     <el-table-column prop="price" label="価格" width="100"
@@ -68,6 +80,8 @@ function update(){
       </template>
     </el-table-column>
   </el-table>
+  <el-pagination layout="prev, pager, next" :total="props.items.length" @current-change="setPage">
+  </el-pagination>
   </Layout>
 
   <el-dialog v-model="isVisible" title="フルーツ編集">
