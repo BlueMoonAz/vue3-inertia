@@ -1,6 +1,6 @@
 <template>
-    <el-row>
-        <el-col :span="4">
+    <el-container>
+        <el-aside width="100px">
             <el-menu>
                 <el-menu-item @click="getIndex()">
                     一覧
@@ -9,12 +9,11 @@
                     登録
                 </el-menu-item>
             </el-menu>
-        </el-col>
-        <el-col :span="15">
+        </el-aside>
+        <el-main>
             <slot />
-        </el-col>
-    </el-row>
-    
+        </el-main>
+    </el-container>
 </template>
 
 <script setup>
