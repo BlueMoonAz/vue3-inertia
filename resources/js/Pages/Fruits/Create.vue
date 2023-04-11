@@ -9,7 +9,7 @@ const form=reactive({
             })
 
 function submit() {
-  Inertia.post('/fruits/create', form)
+  Inertia.post('/fruits/create', form);
 }
 
 </script>

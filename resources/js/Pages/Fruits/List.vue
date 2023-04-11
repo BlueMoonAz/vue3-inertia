@@ -16,11 +16,10 @@ const form=reactive({
         name:null,
         price:null,});
 
-
 function destroy(item){
-      if(confirm(item.name+'を削除しますか？')){
-        Inertia.delete(`/fruits/del/${item.id}`);
-      }
+  if(confirm(item.name+'を削除しますか？')){
+    Inertia.delete(`/fruits/del/${item.id}`);
+  }
 }
 
 function edit(item){
@@ -70,11 +69,11 @@ const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSi
     <el-table-column fixed="right" label="操作" width="120">
       <template #default="scope">
         <el-button link type="primary"
-          @click.prevent="edit(items[scope.$index])">
+          @click.prevent="edit(pagedItems[scope.$index])">
           編集
         </el-button>
         <el-button link type="primary"
-          @click.prevent="destroy(items[scope.$index])">
+          @click.prevent="destroy(pagedItems[scope.$index])">
           削除
         </el-button>
       </template>
