@@ -1,52 +1,50 @@
-<script>
-import Layout from '@/Pages/Layout.vue'
+<script setup>
+import Layout from '@/Pages/Layout.vue';
+import { defineProps,reactive,ref } from 'vue';
+import { Inertia } from '@inertiajs/inertia'
 import { useForm } from '@inertiajs/inertia-vue3';
 
-export default {
-  layout:Layout,
-  props:{
-    items:Array,
-  },
-  methods:{
-    destroy(item){
-      if(confirm(item.name+'を削除しますか？')){
-        this.$inertia.delete(`/fruits/del/${item.id}`)
-      }
-    },
-    edit(item){
-      this.form.id=item.id;
-      this.form.name=item.name;
-      this.form.price=item.price;
-
-      this.isVisible=true;
-    },
-    update(){
-      const form = useForm({
-        id:this.form.id,
-        name:this.form.name,
-        price:this.form.price,
-      })
-
-      this.isVisible=false;
-      form.put(`/fruits/${form.id}/update`);
-
-    },
-  },
-  data(){
-    return{
-      isVisible:false,
-      form:{
+const props = defineProps({
+  items:{
+    type:Array
+  }
+});
+const isVisible=ref(false);
+const form=reactive({
         id:null,
         name:null,
-        price:null,
+        price:null,});
+
+function destroy(item){
+      if(confirm(item.name+'を削除しますか？')){
+        Inertia.delete(`/fruits/del/${item.id}`);
       }
-    }
-  }
-};
+}
+
+function edit(item){
+      form.id=item.id;
+      form.name=item.name;
+      form.price=item.price;
+
+      isVisible.value=true;
+}
+
+function update(){
+      const iform = useForm({
+        id:form.id,
+        name:form.name,
+        price:form.price,
+      })
+
+      isVisible.value=false;
+      iform.put(`/fruits/${iform.id}/update`);
+
+}
 </script>
 
 <template>
-  <el-table :data="items" style="width: 100%">
+  <Layout>
+  <el-table :data="props.items" style="width: 100%">
     <el-table-column prop="id" label="id" width="80" />
     <el-table-column prop="name" label="名称" />
     <el-table-column prop="price" label="価格" width="100"
@@ -70,6 +68,7 @@ export default {
       </template>
     </el-table-column>
   </el-table>
+  </Layout>
 
   <el-dialog v-model="isVisible" title="フルーツ編集">
     <el-form :model="form">
