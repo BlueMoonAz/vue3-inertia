@@ -1,8 +1,8 @@
 <script setup>
 import Layout from '@/Pages/Layout.vue';
-import { defineProps,onMounted,reactive,ref } from 'vue';
+import { defineProps,onMounted,onUpdated,reactive,ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm,usePage } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
 import {ElNotification} from 'element-plus'
 
@@ -52,13 +52,29 @@ function setPage(val){
 
 const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSize, pageSize * page.value));
 
-function notification(aMessage) {
+const flashMessage = computed(()=>usePage().props.value.flash.message);
+
+function notification() {
   ElNotification({
     title: 'Success',
-    message: aMessage,
+    message: flashMessage,
     type: 'success',
   })
 }
+
+onMounted(()=>{
+  if(flashMessage.value){
+    notification();
+  }
+})
+
+onUpdated(()=>{
+  if(flashMessage.value){
+    notification();
+  }
+})
+
+
 
 </script>
 
@@ -111,6 +127,5 @@ function notification(aMessage) {
       </span>
     </template>
   </el-dialog> 
-  <div v-if="$page.props.flash.message" v-on="notification($page.props.flash.message)">
-  </div> 
+  
 </template>
