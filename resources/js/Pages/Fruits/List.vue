@@ -1,9 +1,10 @@
 <script setup>
 import Layout from '@/Pages/Layout.vue';
-import { defineProps,reactive,ref } from 'vue';
+import { defineProps,onMounted,reactive,ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
 import { useForm } from '@inertiajs/inertia-vue3';
 import { computed } from '@vue/reactivity';
+import {ElNotification} from 'element-plus'
 
 const props = defineProps({
   items:{
@@ -50,6 +51,14 @@ function setPage(val){
 }
 
 const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSize, pageSize * page.value));
+
+function notification(aMessage) {
+  ElNotification({
+    title: 'Success',
+    message: aMessage,
+    type: 'success',
+  })
+}
 
 </script>
 
@@ -101,5 +110,7 @@ const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSi
         <el-button @click="isVisible = false">取消</el-button>
       </span>
     </template>
-  </el-dialog>  
+  </el-dialog> 
+  <div v-if="$page.props.flash.message" v-on="notification($page.props.flash.message)">
+  </div> 
 </template>

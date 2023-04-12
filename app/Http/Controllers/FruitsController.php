@@ -20,12 +20,12 @@ class FruitsController extends Controller
     public function create(Request $request){
         DB::insert("insert into fruits(name,price) values (?,?)",
             [$request->get('name'),$request->get('price')]);
-        return Redirect::route('fruits.index');
+        return Redirect::route('fruits.index')->with('message','create fruits success.');
     }
 
     public function destroy(int $id){
         DB::delete("delete from fruits where id=?",[$id]);
-        return Redirect::route('fruits.index');
+        return Redirect::route('fruits.index')->with('message','delete fruits success.');
     }
 
     public function update(Request $request){
