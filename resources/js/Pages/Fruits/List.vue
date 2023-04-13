@@ -24,11 +24,15 @@ function destroy(item){
 }
 
 function edit(item){
-      form.id=item.id;
-      form.name=item.name;
-      form.price=item.price;
 
-      isVisible.value=true;
+  //flashの初期化 notificationが表示されてしまう
+  usePage().props.value.flash.message=null;
+
+  form.id=item.id;
+  form.name=item.name;
+  form.price=item.price;
+
+  isVisible.value=true;
 }
 
 function update(){
@@ -55,26 +59,22 @@ const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSi
 const flashMessage = computed(()=>usePage().props.value.flash.message);
 
 function notification() {
-  ElNotification({
-    title: 'Success',
-    message: flashMessage,
-    type: 'success',
-  })
+  if(flashMessage.value){
+    ElNotification({
+      title: 'Success',
+      message: flashMessage,
+      type: 'success',
+    })
+  }
 }
 
 onMounted(()=>{
-  if(flashMessage.value){
     notification();
-  }
 })
 
 onUpdated(()=>{
-  if(flashMessage.value){
     notification();
-  }
 })
-
-
 
 </script>
 
