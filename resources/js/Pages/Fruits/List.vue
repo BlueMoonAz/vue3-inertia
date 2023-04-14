@@ -2,7 +2,7 @@
 import Layout from '@/Pages/Layout.vue';
 import { defineProps,onMounted,onUpdated,reactive,ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
-import { useForm,usePage } from '@inertiajs/inertia-vue3';
+import { useForm,usePage } from '@inertiajs/vue3';
 import { computed } from '@vue/reactivity';
 import {ElNotification} from 'element-plus'
 
@@ -26,7 +26,7 @@ function destroy(item){
 function edit(item){
 
   //flashの初期化 notificationが表示されてしまう
-  usePage().props.value.flash.message=null;
+  usePage().props.flash.message=null;
 
   form.id=item.id;
   form.name=item.name;
@@ -56,7 +56,7 @@ function setPage(val){
 
 const pagedItems = computed(()=>props.items.slice(pageSize * page.value - pageSize, pageSize * page.value));
 
-const flashMessage = computed(()=>usePage().props.value.flash.message);
+const flashMessage = computed(()=>usePage().props.flash.message);
 
 function notification() {
   if(flashMessage.value){
