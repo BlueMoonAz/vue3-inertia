@@ -1,4 +1,5 @@
 <script setup>
+//import Layout from '@/Layouts/AuthenticatedLayout.vue';
 import Layout from '@/Pages/Layout.vue';
 import { defineProps,onMounted,onUpdated,reactive,ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
