@@ -21,13 +21,13 @@ class FruitsController extends Controller
         DB::insert("insert into fruits(name,price) values (?,?)",
             [$request->get('name'),$request->get('price')]);
         return Redirect::route('fruits.index')->with('message',
-            $request->get('name').'を作成しました');
+            $request->get('name').'を登録しました');
     }
 
-    public function destroy(int $id){
+    public function destroy(int $id,string $fruitName ){
         DB::delete("delete from fruits where id=?",[$id]);
         return Redirect::route('fruits.index')->with('message',
-            'id:'.$id.'を削除しました');
+            $fruitName.'を削除しました');
     }
 
     public function update(Request $request){
@@ -39,6 +39,6 @@ class FruitsController extends Controller
         );
 
         return Redirect::route('fruits.index')->with('message',
-            $request->get('name').'を編集しました');
+            $request->get('name').'を更新しました');
     }
 }

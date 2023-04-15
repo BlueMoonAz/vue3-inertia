@@ -20,7 +20,7 @@ const form=reactive({
 
 function destroy(item){
   if(confirm(item.name+'を削除しますか？')){
-    Inertia.delete(`/fruits/del/${item.id}`);
+    Inertia.delete(`/fruits/del/${item.id}/${item.name}`);
   }
 }
 

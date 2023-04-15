@@ -52,7 +52,7 @@ Route::get('/fruits/add', function () {
 Route::post('/fruits/create',[FruitsController::class,'create'])
         ->middleware(['auth', 'verified'])->name('fruits.create');
 
-Route::delete('/fruits/del/{fruit}',[FruitsController::class,'destroy'])
+Route::delete('/fruits/del/{fruit}/{fruitname}',[FruitsController::class,'destroy'])
         ->middleware(['auth', 'verified'])->name('fruits.destroy');
 
 Route::put('/fruits/{fruit}/update',[FruitsController::class,'update'])
