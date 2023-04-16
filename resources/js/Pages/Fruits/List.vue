@@ -1,6 +1,6 @@
 <script setup>
 //import Layout from '@/Layouts/AuthenticatedLayout.vue';
-import Layout from '@/Pages/Layout.vue';
+import Layout from '@/Pages/Fruits/Layout.vue';
 import { defineProps,onMounted,onUpdated,reactive,ref } from 'vue';
 import { Inertia } from '@inertiajs/inertia'
 import { useForm,usePage } from '@inertiajs/vue3';

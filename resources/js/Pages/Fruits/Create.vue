@@ -1,7 +1,7 @@
 <script setup >
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
-import Layout from '@/Pages/Layout.vue'
+import Layout from '@/Pages/Fruits/Layout.vue'
 
 const form=reactive({
                 name: null,
