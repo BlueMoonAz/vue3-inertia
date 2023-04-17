@@ -21,10 +21,14 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+const isVisible = true;
+
 </script>
 
 <template>
     <Head title="Log in" />
+    <el-dialog v-model="isVisible" title="Log in">
     <el-form :model="form" >
         <el-form-item label="Email">
             <el-input v-model="form.email" autocomplete="username" />
@@ -34,4 +38,5 @@ const submit = () => {
         </el-form-item>
         <el-button type="submit" @click.prevent="submit()">Log in</el-button>
     </el-form>
+    </el-dialog>
 </template>
